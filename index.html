@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PulseAI — EV Customer Behaviour Engine</title>
+<style>
+:root {
+  --bg:#07111f; --panel:#0d1b2e; --panel2:#10243a; --text:#eef5ff;
+  --muted:#9eb0c7; --line:rgba(255,255,255,.1); --accent:#65e6c2;
+  --accent2:#7aa8ff; --shadow:0 20px 60px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:
+radial-gradient(circle at 80% 0%,rgba(122,168,255,.16),transparent 32rem),
+radial-gradient(circle at 0% 20%,rgba(101,230,194,.09),transparent 28rem),var(--bg);color:var(--text)}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,calc(100% - 40px));margin:auto}
+nav{position:sticky;top:0;z-index:10;background:rgba(7,17,31,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;letter-spacing:-.04em;font-size:1.25rem}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:24px;color:var(--muted);font-size:.92rem}
+.nav-links a:hover{color:var(--text)}
+.hero{padding:86px 0 62px}
+.eyebrow{color:var(--accent);font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:clamp(2.7rem,7vw,5.8rem);line-height:.95;letter-spacing:-.07em;margin:18px 0 22px;max-width:900px}
+h1 em{font-style:normal;color:var(--accent)}
+.hero p{max-width:740px;color:var(--muted);font-size:1.12rem;line-height:1.7}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.btn{padding:13px 19px;border-radius:12px;border:1px solid var(--line);font-weight:700;display:inline-flex;align-items:center;gap:9px;transition:.2s}
+.btn.primary{background:var(--accent);color:#06131d;border-color:transparent}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:20px 0 72px}
+.stat,.card{background:linear-gradient(145deg,rgba(16,36,58,.95),rgba(13,27,46,.95));border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
+.stat{padding:20px}
+.stat b{display:block;font-size:2rem;letter-spacing:-.05em}
+.stat span{color:var(--muted);font-size:.84rem}
+.section{padding:38px 0 70px}
+.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:22px}
+h2{font-size:2rem;letter-spacing:-.04em;margin:0 0 8px}
+.section-head p{margin:0;color:var(--muted);max-width:700px;line-height:1.6}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{padding:25px}
+.card .icon{font-size:1.7rem;margin-bottom:18px}
+.card h3{margin:0 0 10px;font-size:1.15rem}
+.card p{color:var(--muted);line-height:1.6;margin:0 0 18px}
+.card .link{color:var(--accent);font-weight:700}
+.workflow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.step{padding:20px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.035);position:relative}
+.step:not(:last-child)::after{content:"→";position:absolute;right:-14px;top:42%;color:var(--accent);z-index:2}
+.step small{color:var(--accent);font-weight:800}
+.step h3{font-size:1rem;margin:10px 0 7px}
+.step p{color:var(--muted);font-size:.88rem;line-height:1.5;margin:0}
+.usecases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.usecase{min-height:240px}
+.usecase ul{color:var(--muted);padding-left:18px;line-height:1.8}
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.member-card{display:flex;align-items:center;gap:14px;padding:16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.035)}
+.avatar{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#06131d;font-weight:900;font-size:.82rem}
+.member-card strong{display:block;font-size:.9rem}
+.member-card a{display:block;color:var(--muted);font-size:.76rem;margin-top:4px;word-break:break-all}
+.footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.86rem}
+@media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}.grid-3,.usecases,.team{grid-template-columns:repeat(2,1fr)}.workflow{grid-template-columns:1fr 1fr}.step:not(:last-child)::after{display:none}}
+@media(max-width:620px){.container{width:min(100% - 28px,1180px)}.nav-links{display:none}.hero{padding-top:58px}.stats,.grid-3,.usecases,.team,.workflow{grid-template-columns:1fr}h1{font-size:3.2rem}}
+</style>
+</head>
+<body>
+<nav><div class="container nav-inner">
+  <div class="logo">Pulse<span>AI</span></div>
+  <div class="nav-links">
+    <a href="#overview">Overview</a><a href="#resources">Resources</a><a href="#team">Team</a>
+  </div>
+</div></nav>
+
+<main>
+<section class="hero" id="overview"><div class="container">
+  <div class="eyebrow">Team AllTech · IIM Lucknow · IESEG School of Management</div>
+  <h1>A customer behaviour engine for the <em>EV automobile industry.</em></h1>
+  <p>PulseAI is an AI-native platform that helps EV businesses predict customer behaviour, validate initiatives before launch, and identify the levers that improve customer satisfaction and revenue.</p>
+  <div class="actions">
+    <a class="btn primary" href="https://www.pulseaidemolink.com" target="_blank" rel="noopener">🚀 Launch App Demo</a>
+    <a class="btn" href="#resources">Explore Project ↓</a>
+  </div>
+</div></section>
+
+<section class="container stats">
+  <div class="stat"><b>47</b><span>Real EV models</span></div>
+  <div class="stat"><b>212</b><span>Parameters</span></div>
+  <div class="stat"><b>7</b><span>Brands</span></div>
+  <div class="stat"><b>0.81</b><span>Price model R²</span></div>
+  <div class="stat"><b>4</b><span>Customer clusters</span></div>
+</section>
+
+<section class="section" id="resources"><div class="container">
+  <div class="section-head"><div><h2>Project resources</h2><p>Everything needed for a quick, complete demonstration of the PulseAI project.</p></div></div>
+  <div class="grid-3">
+    <div class="card"><div class="icon">📄</div><h3>Project Abstract</h3><p>Explore the three core AI applications: behaviour prediction, pre-launch validation, and satisfaction-revenue optimization.</p><a class="link" href="#abstract">Read overview →</a></div>
+    <div class="card"><div class="icon">🎞️</div><h3>Presentation</h3><p>Open the complete project presentation covering the problem, solution workflow, prototype, insights, and roadmap.</p><a class="link" href="PulseAI_Presentation.pptx" download>Download PPT →</a></div>
+    <div class="card"><div class="icon">🚀</div><h3>App Demo</h3><p>Launch the completed PulseAI prototype and explore the interactive AI-powered dashboard.</p><a class="link" href="https://www.pulseaidemolink.com" target="_blank" rel="noopener">Open demo →</a></div>
+    <div class="card"><div class="icon">📊</div><h3>Raw Sample Data</h3><p>Access the sample EV/car-pricing data used for the project analysis and modeling.</p><a class="link" href="car-pricing-parameters.csv" download>Download dataset →</a></div>
+    <div class="card"><div class="icon">🧠</div><h3>AI Strategy Advisor</h3><p>Natural-language Q&A, data-backed pricing recommendations, and AI-supported market exploration.</p><a class="link" href="https://www.pulseaidemolink.com" target="_blank" rel="noopener">Try the platform →</a></div>
+    <div class="card"><div class="icon">⚡</div><h3>Key Differentiator</h3><p>Simulate demand before launch by adjusting price, battery, range, and sentiment.</p><a class="link" href="#workflow">See workflow →</a></div>
+  </div>
+</div></section>
+
+<section class="section" id="workflow"><div class="container">
+  <div class="section-head"><div><h2>How PulseAI works</h2><p>From raw customer and market data to actionable recommendations and continuous validation.</p></div></div>
+  <div class="workflow">
+    <div class="step"><small>01</small><h3>Data & ETL</h3><p>Customer data, social signals, competitor data, and structured processing.</p></div>
+    <div class="step"><small>02</small><h3>AI Analysis</h3><p>NLP sentiment, ML prediction, and customer segmentation.</p></div>
+    <div class="step"><small>03</small><h3>Behaviour Prediction</h3><p>Purchase intent, demand forecasts, price sensitivity, and target audiences.</p></div>
+    <div class="step"><small>04</small><h3>Recommendations</h3><p>Product improvement, pricing, marketing strategy, and launch timing.</p></div>
+    <div class="step"><small>05</small><h3>Validation Loop</h3><p>Monitor KPIs, check deviations, tune models, and learn continuously.</p></div>
+  </div>
+</div></section>
+
+<section class="section" id="abstract"><div class="container">
+  <div class="section-head"><div><h2>Three AI use cases</h2><p>PulseAI turns customer and market signals into decisions teams can act on before problems become expensive.</p></div></div>
+  <div class="usecases">
+    <div class="card usecase"><h3>01 · Predicting User Behavior</h3><p>Anticipate churn, upgrades, disengagement, and next actions.</p><ul><li>Churn-risk scores</li><li>Next-best-action recommendations</li><li>Behavioural segmentation</li></ul></div>
+    <div class="card usecase"><h3>02 · Validating Initiatives</h3><p>Stress-test features, pricing, and campaigns before committing full resources.</p><ul><li>Adoption and sentiment forecasts</li><li>Risk flags by segment</li><li>Go/no-go decision support</li></ul></div>
+    <div class="card usecase"><h3>03 · Satisfaction + Revenue</h3><p>Identify which pricing, service, and product levers can improve both CX and commercial outcomes.</p><ul><li>Ranked satisfaction drivers</li><li>Personalized recommendations</li><li>Revenue-impact prioritization</li></ul></div>
+  </div>
+</div></section>
+
+<section class="section" id="team"><div class="container">
+  <div class="section-head"><div><h2>Group members</h2><p>Team AllTech — the people behind PulseAI.</p></div></div>
+  <div class="team"><div class="member-card">
+        <div class="avatar">AS</div>
+        <div><strong>ANUBHAV SHARMA</strong><a href="mailto:pgpwe21012@iiml.ac.in">pgpwe21012@iiml.ac.in</a></div>
+    </div>
+<div class="member-card">
+        <div class="avatar">HS</div>
+        <div><strong>HEMANT KUMAR SINGH</strong><a href="mailto:pgpwe21012@iiml.ac.in">pgpwe21012@iiml.ac.in</a></div>
+    </div>
+<div class="member-card">
+        <div class="avatar">NK</div>
+        <div><strong>NEHIL KUMAR</strong><a href="mailto:pgpwe21034@iiml.ac.in">pgpwe21034@iiml.ac.in</a></div>
+    </div>
+<div class="member-card">
+        <div class="avatar">PS</div>
+        <div><strong>PINESH NARESH SINGAL</strong><a href="mailto:pgpwe21036@iiml.ac.in">pgpwe21036@iiml.ac.in</a></div>
+    </div>
+<div class="member-card">
+        <div class="avatar">SR</div>
+        <div><strong>SUNMEET SINGH RAJAN</strong><a href="mailto:pgpwe21057@iiml.ac.in">pgpwe21057@iiml.ac.in</a></div>
+    </div>
+<div class="member-card">
+        <div class="avatar">VP</div>
+        <div><strong>VIVEK PALIWAL</strong><a href="mailto:pgpwe21063@iiml.ac.in">pgpwe21063@iiml.ac.in</a></div>
+    </div></div>
+</div></section>
+</main>
+
+<footer class="footer"><div class="container">PulseAI · A Customer Behaviour Engine for the EV Automobile Industry · Team AllTech</div></footer>
+</body>
+</html>
